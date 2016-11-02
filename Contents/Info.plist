@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleIdentifier</key>
+	<string>com.plexapp.plugins.srfpodcast</string>
+	<key>PlexPluginClass</key>
+	<string>Content</string>
+	<key>PlexFrameworkVersion</key>
+	<string>2</string>
+	<!-- Channel 9 serves MP4 videos which are supported on all platforms -->
+	<key>PlexClientPlatforms</key>
+	<string>*</string>
+
+	<!-- Current bundle version -->
+	<key>CFBundleVersion</key>
+	<string>0.1</string>
+	<!-- Path to your latest bundle info -->
+	<key>PlexPluginVersionUrl</key>
+	<string>https://api.github.com/repos/CodeShaperClub/SRF.Podcast.bundle/releases/latest</string>
+	<!-- Required for updater for installation process -->
+	<key>PlexPluginCodePolicy</key>
+	<string>Elevated</string>
+
+	<key>PlexAudioCodec</key>
+	<array>
+		<string>AAC</string>
+	</array>
+	<key>PlexVideoCodec</key>
+	<array>
+		<string>H.264</string>
+	</array>
+	<key>PlexMediaContainer</key>
+	<array>
+		<string>MP4</string>
+	</array>
+</dict>
+</plist>

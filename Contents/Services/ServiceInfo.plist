@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>URL</key>
+        <dict>
+            <key>SRF Podcast</key>
+            <dict>
+                <key>URLPatterns</key>
+                <array>
+                    <string>^(http|https)://podcastsource.sf.tv/.+</string>
+                </array>
+                <key>TestURLs</key>
+                <array>
+                    <string>http://podcastsource.sf.tv/nps/990139891/2195.68/Das+Geheimnis+des+Placebo-Effektes/podcast/einstein/2016/10/einstein_20161027_210527_v_podcast_h264_q30.mp4</string>
+                </array>
+            </dict>
+        </dict>
+        <key>Search</key>
+        <dict>
+            <key>SRF Podcast</key>
+            <dict>
+                <key>Identifier</key>
+                <string>com.plexapp.plugins.srfpodcast</string>
+            </dict>
+        </dict>
+    </dict>
+</plist>

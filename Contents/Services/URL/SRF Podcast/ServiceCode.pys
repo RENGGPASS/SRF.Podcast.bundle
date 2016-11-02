@@ -1,0 +1,29 @@
+
+####################################################################################################
+def NormalizeURL(url):
+
+	return url
+
+
+####################################################################################################
+def MetadataObjectForURL(url):
+
+    # Dummy Only
+    return None
+
+
+####################################################################################################
+def MediaObjectsForURL(url):
+
+    # Dummy Only
+    return None
+
+
+####################################################################################################
+@indirect
+def PlayVideo(url):
+
+    if not url:
+        raise Ex.MediaNotAvailable
+
+    return IndirectResponse(VideoClipObject, key=url)

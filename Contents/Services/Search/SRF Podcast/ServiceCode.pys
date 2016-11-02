@@ -1,0 +1,7 @@
+
+####################################################################################################
+def Search(query):
+
+    # Dummy Only
+    oc = ObjectContainer(header='Empty', message='There are no shows available.')
+    return oc

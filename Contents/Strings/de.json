@@ -6,5 +6,8 @@
   "Error": "Fehler",
   "Update available: %s": "Aktualisierung verfügbar: %s",
   "Install latest version of the channel.": "Installiere die aktuellste Version des Kanals.",
-  "Channel updated to version %s": "Kanal wurde auf Version %s aktualisiert"
+  "Channel updated to version %s": "Kanal wurde auf Version %s aktualisiert",
+  "There are no shows available.": "Es wurden keine Shows gefunden.",
+  "There are no episodes available.": "Es wurden keine Episoden gefunden.",
+  "Empty": "Leer"
 }

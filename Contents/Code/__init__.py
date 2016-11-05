@@ -57,7 +57,7 @@ def SubMenu(title, url):
         source = HTML.ElementFromURL(API_BASE)
     except Exception as e:
         Log.Error(e)
-        return ObjectContainer(header='Empty', message='There are no episodes available.')
+        return ObjectContainer(header=L('Empty'), message=L('There are no shows available.'))
 
     # Select all available shows
     shows = source.xpath('//li[contains(@data-filter-options,"'+ url + '")]')
@@ -93,7 +93,7 @@ def GetDirectory(title, id, page=1):
         feed = JSON.ObjectFromURL(url, cacheTime=None)
     except Exception as e:
         Log.Error(e)
-        return ObjectContainer(header='Empty', message='There are no episodes available.')
+        return ObjectContainer(header=L('Empty'), message=L('There are no episodes available.'))
 
     pages = int(feed['maxPageNumber'])
     nextpage = str(int(page) + 1)
@@ -106,7 +106,7 @@ def GetDirectory(title, id, page=1):
         except:
             pass
 
-        url = API_ITEM %item_id
+        url = API_ITEM %item_id + '&q=' + Prefs['content_quality']
 
         oc.add(VideoClipObject(
             url = url,
@@ -115,7 +115,7 @@ def GetDirectory(title, id, page=1):
             thumb = Resource.ContentsOfURLWithFallback(item['imageUrl'])
         ))
 
-    # Too much episodes in the current page? TODO: bad solution
+    # TODO: bad solution
     if len(oc) == 10 and page < pages:
         oc.add(NextPageObject(key=Callback(GetDirectory, title=title, id=id, page=nextpage), title=L('MoreItems')))
 

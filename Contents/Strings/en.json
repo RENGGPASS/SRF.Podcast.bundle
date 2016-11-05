@@ -6,5 +6,8 @@
   "Error": "Error",
   "Update available: %s": "Update available: %s",
   "Install latest version of the channel.": "Install latest version of the channel.",
-  "Channel updated to version %s": "Channel updated to version %s"
+  "Channel updated to version %s": "Channel updated to version %s",
+  "There are no shows available.": "There are no shows available.",
+  "There are no episodes available.": "There are no episodes available.",
+  "Empty": "Empty"
 }

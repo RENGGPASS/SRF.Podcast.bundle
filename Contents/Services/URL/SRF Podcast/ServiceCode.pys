@@ -8,6 +8,10 @@ def NormalizeURL(url):
 ####################################################################################################
 def MetadataObjectForURL(url):
 
+    # Quality attached?
+    if '&q=' in url:
+        url = url[:-5]
+
     # Parse response from JSON and create a VideoClipObject.
     try:
         source = JSON.ObjectFromURL(url)
@@ -45,10 +49,16 @@ def MetadataObjectForURL(url):
 ####################################################################################################
 def MediaObjectsForURL(url):
 
+    # Quality check, maybe wrong, but we must be fast here
+    if url[-2:] == 'SD':
+        reso = 'sd'
+    else:
+        reso = '720'
+
     return [
         MediaObject(
             video_codec=VideoCodec.H264,
-            video_resolution='720',
+            video_resolution=reso,
             audio_codec=AudioCodec.AAC,
             audio_channels=2,
             container=Container.MP4,
@@ -65,6 +75,13 @@ def MediaObjectsForURL(url):
 ####################################################################################################
 @indirect
 def PlayVideo(url):
+
+    # get quality - default is HD
+    if '&q=' in url:
+        quality = url[-2:0]
+        url = url[:-5]
+    else:
+        quality = 'HD'
 
     # Load metadata for detail informations
     try:
@@ -86,10 +103,12 @@ def PlayVideo(url):
 
     # Let's search for the best quality
     for download in downloads:
-        if download['@quality'] == Prefs['content_quality']:
+        if download['@quality'] == quality:
             video_url = download['text']
 
     if not video_url:
         raise Ex.MediaNotAvailable
+
+    Log.Info(video_url)
 
     return IndirectResponse(VideoClipObject, key=video_url)

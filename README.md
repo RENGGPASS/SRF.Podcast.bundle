@@ -20,6 +20,10 @@ Like most plugins, this is currently "[unsupported](https://support.plex.tv/hc/e
 
 ## Changelog
 
+### Version 0.2
+
+* Needs additional work for parsing existing shows
+
 ### Version 0.1
 
 * Basic structure of the plugin initialized

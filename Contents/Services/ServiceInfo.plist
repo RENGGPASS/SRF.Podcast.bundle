@@ -8,7 +8,8 @@
             <dict>
                 <key>URLPatterns</key>
                 <array>
-                    <string>^(http|https)://podcastsource.sf.tv/.+</string>
+                    <string>^http://podcastsource.sf.tv/.+</string>
+                    <string>^https://il.srgssr.ch/integrationlayer/1.0/ue/srf/video/play/.+</string>
                 </array>
                 <key>TestURLs</key>
                 <array>

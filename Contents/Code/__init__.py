@@ -22,14 +22,6 @@ def Start():
 
 
 ####################################################################################################
-# Let's check the preferences
-def ValidatePrefs():
-
-    if int(Prefs['items_per_page']) < 10:
-        Prefs['items_per_page'] = 25
-
-
-####################################################################################################
 # Main Menu is static
 @handler(PREFIX, NAME, art=ART, thumb=ICON)
 def VideoMainMenu():
@@ -41,6 +33,15 @@ def VideoMainMenu():
     oc.add(DirectoryObject(key=Callback(SubMenu, title='SRF zwei', url='pr-srf-2'), title='SRF zwei'))
     oc.add(DirectoryObject(key=Callback(SubMenu, title='SRF info', url='pr-srf-info'), title='SRF info'))
 
+    # Add Preferences to main menu.
+    oc.add(PrefsObject(title=L('Preferences')))
+
+    # Show update item, if available
+    try:
+        Updater(PREFIX + '/updater', oc)
+    except Exception as e:
+        Log.Error(e)
+
     return oc
 
 
@@ -49,32 +50,25 @@ def VideoMainMenu():
 @route(PREFIX + '/submenu')
 def SubMenu(title, url):
 
-    Log.Warn('SubMenu')
-
     oc = ObjectContainer(title1=L('Title'), title2=title)
 
     # Search data for the choosen channel
     try:
         source = HTML.ElementFromURL(API_BASE)
     except Exception as e:
+        Log.Error(e)
         return ObjectContainer(header='Empty', message='There are no episodes available.')
 
     # Select all available shows
     shows = source.xpath('//li[contains(@data-filter-options,"'+ url + '")]')
 
-    Log.Warn(len(shows))
-
     # Filter the avaiable shows by the choosen channel
     for show in shows:
 
         show_title = show.xpath('./a/img')[0].get('title')
-        Log.Warn(show_title)
         show_summary = show.xpath('./div[@class="module-content"]/p')[0].text
-        Log.Warn(show_summary)
         show_thumb = show.xpath('./a/img')[0].get('data-retina-src') # better quality than data-origina-src
-        Log.Warn(show_thumb)
-        show_id = show.xpath('.//a[contains(@class, "itunes")]')[0].get('href')[-40:][:-4] # we need the guid
-        Log.Warn(show_id)
+        show_id = show.xpath('.//a[contains(@class, "itunes")]')[0].get('href')[-40:][:-4] # we need the guid from the url
 
         oc.add(TVShowObject(
             key=Callback(GetDirectory, title=show_title, id=show_id),
@@ -90,20 +84,19 @@ def SubMenu(title, url):
 ####################################################################################################
 # List episodes of the selected show
 @route(PREFIX + '/directory')
-def GetDirectory(title, id, page=1):    
+def GetDirectory(title, id, page=1):
 
     oc = ObjectContainer(title1=L('Title'), title2=title)
 
     url = API_DIR + id + '&pageNumber=' + str(page)
     try:
         feed = JSON.ObjectFromURL(url, cacheTime=None)
-    except:
+    except Exception as e:
+        Log.Error(e)
         return ObjectContainer(header='Empty', message='There are no episodes available.')
 
     pages = int(feed['maxPageNumber'])
     nextpage = str(int(page) + 1)
-
-    Log.Debug(url)
 
     for item in feed['episodes']:
 
@@ -114,18 +107,16 @@ def GetDirectory(title, id, page=1):
             pass
 
         url = API_ITEM %item_id
-        Log.Debug(url)
 
         oc.add(VideoClipObject(
             url = url,
             title = item['title'],
             summary = item['description'],
-            duration = 2169,
             thumb = Resource.ContentsOfURLWithFallback(item['imageUrl'])
         ))
 
     # Too much episodes in the current page? TODO: bad solution
     if len(oc) == 10 and page < pages:
-        oc.add(NextPageObject(key=Callback(GetDirectory, title=title, id=id, page=nextpage), title='MoreItems'))
+        oc.add(NextPageObject(key=Callback(GetDirectory, title=title, id=id, page=nextpage), title=L('MoreItems')))
 
     return oc

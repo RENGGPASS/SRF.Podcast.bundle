@@ -1,3 +1,10 @@
 {
-  "Title": "SRF Podcast"
+  "Title": "SRF Podcast",
+  "MoreItems": "Weitere Episoden...",
+  "Preferences": "Einstellungen",
+  "Success": "Erfolgreich",
+  "Error": "Fehler",
+  "Update available: %s": "Aktualisierung verfügbar: %s",
+  "Install latest version of the channel.": "Installiere die aktuellste Version des Kanals.",
+  "Channel updated to version %s": "Kanal wurde auf Version %s aktualisiert"
 }

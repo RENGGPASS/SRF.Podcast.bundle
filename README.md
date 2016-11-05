@@ -10,21 +10,16 @@ Like most plugins, this is currently "[unsupported](https://support.plex.tv/hc/e
 
 ## Known Issues / Limitations
 
-* Not done! Don't use it at this moment. Updates will follow soon.
+* None
 
 ## Features for the future
 
-* Choose every podcast from srf.ch
-* Choose between SD and HD podcasts
+* Choose audio podcast from srf.ch
 * Search enabled
 
 ## Changelog
 
-### Version 0.2
+### Version 1.0
 
-* Working sample with Einstein HD and 10vor10
-* Needs additional work for parsing existing shows
-
-### Version 0.1
-
-* Basic structure of the plugin initialized
+* Initial working release
+* Browse TV shows

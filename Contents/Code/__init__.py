@@ -60,9 +60,20 @@ def SubMenu(title, url):
 
     oc = ObjectContainer(title1=L('Title'), title2=title)
 
-    oc.add(DirectoryObject(
+    oc.add(TVShowObject(
+        key=Callback(GetDirectory, title='10vor10', id='c38cc259-b5cd-4ac1-b901-e3fddd901a3d'),
+        rating_key='c38cc259-b5cd-4ac1-b901-e3fddd901a3d',
+        title='10vor10',
+        summary='Das News-Magazin berichtet von Montag bis Freitag über die Hintergründe zu den Schlagzeilen des Tages aus dem In- und Ausland.',
+        source_title='SRF 1',
+        thumb=Resource.ContentsOfURLWithFallback('http://ws.srf.ch/asset/image/audio/7b99fee0-a71e-486d-b3f6-841103157d7d/PODCAST/1448267752000.jpg')))
+
+    oc.add(TVShowObject(
         key=Callback(GetDirectory, title='Einstein HD', id='f005a0da-25ea-43a5-b3f8-4c5c23b190b3'),
+        rating_key='f005a0da-25ea-43a5-b3f8-4c5c23b190b3',
         title='Einstein HD',
+        summary='Das Wissensmagazin berichtet wöchentlich über aktuelle und hintergründige Themen aus allen Wissensbereichen, Phänomene und die Geheimnisse des Alltags und des Lebens.',
+        source_title='SRF 1',
         thumb=Resource.ContentsOfURLWithFallback('http://ws.srf.ch/asset/image/audio/10b9b28f-7667-4816-80ea-134442a38cf6/PODCAST/1448274538000.jpg')))
 
     return oc

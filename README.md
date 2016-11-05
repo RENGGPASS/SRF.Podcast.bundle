@@ -22,6 +22,7 @@ Like most plugins, this is currently "[unsupported](https://support.plex.tv/hc/e
 
 ### Version 0.2
 
+* Working sample with Einstein HD and 10vor10
 * Needs additional work for parsing existing shows
 
 ### Version 0.1

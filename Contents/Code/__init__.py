@@ -71,9 +71,9 @@ def SubMenu(title, url):
         Log.Warn(show_title)
         show_summary = show.xpath('./div[@class="module-content"]/p')[0].text
         Log.Warn(show_summary)
-        show_thumb = show.xpath('./a/img')[0].get('data-original-src')
+        show_thumb = show.xpath('./a/img')[0].get('data-retina-src') # better quality than data-origina-src
         Log.Warn(show_thumb)
-        show_id = show.xpath('./div[@data-toggle="bitrate-view"]')
+        show_id = show.xpath('.//a[contains(@class, "itunes")]')[0].get('href')[-40:][:-4] # we need the guid
         Log.Warn(show_id)
 
         oc.add(TVShowObject(

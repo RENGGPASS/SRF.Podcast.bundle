@@ -19,6 +19,10 @@ Like most plugins, this is currently "[unsupported](https://support.plex.tv/hc/e
 
 ## Changelog
 
+### Version 1.1
+
+* Hotfix for quality selector
+
 ### Version 1.0
 
 * Initial working release
